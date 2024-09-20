@@ -28,6 +28,8 @@ When you are ready to commit some changes:
 1.  In the Changes tab (just below the Current repository dropdown), click on the file that you wish to view the differences
 1.  The changes are displayed in diff format, with plus and minus signs and colors highlighting your changes.
 1.  If you are happy with the changes you made, commit them by filling the Update line (and larger description field if you think it is necessary) and then pressing the "Commit to **main**" button.
+1.  Your commits are highlighted on the main Desktop panel.
+1.  Click on "push to origin" button. If you don't push your changes, they are collected by GitHub Desktop and you will continue to see the highlighted message to push your commits until you push them. 
 1.  Your changes are pushed to GitHub
 
 ### Final Notes
