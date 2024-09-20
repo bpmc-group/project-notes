@@ -2,6 +2,9 @@
 This "repository" contains helps, hints, and guides for working together on this project.
 
 ## GitHub Desktop
+GitHub offers a free Windows tool called GitHub Desktop that tries to make working with a GitHub repository less difficult. You clone a repository and then can open it in your choice of editor, such as VS Code. Once you are inside VS Code you can use it as normal, including opening the terminal window and running the code.
+
+
 
 ## VS Code To Access Remote Hosts
 Your local copy of VS Code can be used to access remote hosts. After installing the Remote SSH extension, you can click on the >< blue icon button in the lower left corner of the screen and log into servers. This is useful if you need to edit a file on the remote system, for example, a config file or, using the terminal window, to stop a running app or restart one.
