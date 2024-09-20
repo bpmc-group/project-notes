@@ -1,5 +1,7 @@
-# projectnotes
+# BPMC Project Notes
 This "repository" contains helps, hints, and guides for working together on this project.
+
+## GitHub Desktop
 
 ## VS Code To Access Remote Hosts
 Your local copy of VS Code can be used to access remote hosts. After installing the Remote SSH extension, you can click on the >< blue icon button in the lower left corner of the screen and log into servers. This is useful if you need to edit a file on the remote system, for example, a config file or, using the terminal window, to stop a running app or restart one.
