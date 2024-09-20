@@ -4,7 +4,9 @@ This "repository" contains helps, hints, and guides for working together on this
 ## GitHub Desktop
 GitHub offers a free Windows tool called GitHub Desktop that tries to make working with a GitHub repository less difficult. You clone a repository and then can open it in your choice of editor, such as VS Code. Once you are inside VS Code you can use it as normal, including opening the terminal window and running the code.
 
-In the upper left corner of the screen is Current Repository dropdown. You can select one or more repositories from this dropdown. Most of the time we will probably only the bpmc repo  selected, but it makes working with multiple repos easier. 
+In the upper left corner of the screen is Current Repository dropdown. You can select one or more repositories from this dropdown. Most of the time we will probably only the bpmc repo  selected, but GitHub Desktop makes working with multiple repos easier. 
+
+![GitHub Desktop](img/GitHubDesktop.png)
 
 ### Selecting a Repository
 To select a repo:
@@ -12,17 +14,25 @@ To select a repo:
 1.  Click on the dropdown triangle
 1.  Click on the Add button
 1.  Click on clone a repo
+![Select a Repository](img/SelectingRepository.png)
 1.  A list of repositories associated with you are displayed, starting with the repos you own, followed by the group(s) that you belong to. 
 1.  Highlight the repo that you want to access and press the Clone button
 1.  The repo will be cloned to your Documents\GitHub folder (or to the location that you choose).
 1.  The first option is to open in your editor (selected when you installed GitHub Desktop). This will bring up VS Code with the cloned folder already selected as the Open Folder
 
 ### Updating the repository
-When you are ready to commit some changes, 
+When you are ready to commit some changes: 
 
+1.  Save the files that you edited 
+1.  Return to the GitHub Desktop app. 
+1.  In the Changes tab (just below the Current repository dropdown), click on the file that you wish to view the differences
+1.  The changes are displayed in diff format, with plus and minus signs and colors highlighting your changes.
+1.  If you are happy with the changes you made, commit them by filling the Update line (and larger description field if you think it is necessary) and then pressing the "Commit to **main**" button.
+1.  Your changes are pushed to GitHub
 
+### Final Notes
 
-
+GitHub Desktop makes it very convenient to perform simple tasks, once you get used to selecting the Current repository. It also offers all the features available in git & GitHub, such as branches, pull requests, etc.
 
 ## VS Code To Access Remote Hosts
 Your local copy of VS Code can be used to access remote hosts. After installing the Remote SSH extension, you can click on the >< blue icon button in the lower left corner of the screen and log into servers. This is useful if you need to edit a file on the remote system, for example, a config file or, using the terminal window, to stop a running app or restart one.
