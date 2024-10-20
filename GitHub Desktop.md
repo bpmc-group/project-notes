@@ -1,7 +1,4 @@
-# BPMC Project Notes
-This "repository" contains helps, hints, and guides for working together on this project.
-
-## GitHub Desktop
+# GitHub Desktop
 GitHub offers a free Windows & Mac tool called GitHub Desktop that tries to make working with a GitHub repository less difficult. You clone a repository and then can open it in your choice of editor, such as VS Code. Once you are inside VS Code you can use it as normal, including opening the terminal window and running the code.
 
 In the upper left corner of the screen is Current Repository dropdown. You can select one or more repositories from this dropdown. Most of the time we will probably only the bpmc repo  selected, but GitHub Desktop makes working with multiple repos easier.
@@ -43,31 +40,3 @@ When you are ready to commit some changes:
 ### Final Notes
 
 GitHub Desktop makes it very convenient to perform the most common tasks. I had trouble getting used to selecting the Current repository but it's starting to feel more natural. It also offers all the features available in git & GitHub, such as branches, pull requests, etc.
-
-------------------------------------
-
-## VS Code To Access Remote Hosts
-Your local copy of VS Code can be used to access remote hosts. After installing the Remote SSH extension, you can click on the >< blue icon button in the lower left corner of the screen and log into servers. This is useful if you need to edit a file on the remote system, for example, a config file or, using the terminal window, to stop a running app or restart one.
-
-Once the Remote SSH extension pack is installed:
-
-1.  Click on >< button in lower left corner.
-1.  From the pop-up list, click on the "Connect to Host . . . Remote-SSH"
-1.  Type in <username>@<host-name> and press Enter
-1.  The first time it will ask what kind of system it is and give you a few options. Mark's non-google system will usually be Linux. 
-1.  A new VS Code window will popup over the original VS Code window.
-1.  When it asks, type in your <password>
-1.  At this point you are connected to the remote server. You can open files, edit them, and save them on the remote server.
-1.  If you open a new terminal window, the terminal will be inside the host that you connected to. This is where you could issue commands to start or stop a process on the host computer.
-
-1.  WHEN DONE:
-1.  Click the >< button in lower left
-1.  From the popup list, select Close Remote Connection at the bottom
-1.  VS Code returns to local mode.
-
-NOTE: When the remote VS Code window is opened, you can close the original VS Code window.
-
---------------------------------------------
-
-## Github
-
