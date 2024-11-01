@@ -36,9 +36,9 @@ You can "un-stage" files and **keep** your changes (you weren't ready to stage a
     git restore --staged <filename>
 
 ### Commit your changes
-When you are ready to keep your changes,you need to commit them as follows:
+When you are ready to keep your changes, you need to commit them as follows:
 
-`git commit -m "<Description of changes>`
+    git commit -m "<Description of changes>"
 
 The description of the changes should be exactly as long and as detailed as you feel is necessary. It can be short ("bug 123") or it can be long ("Interaction of module 1 and module 2 failed intermittently when accessed under the following conditions...."). Just be sure to enclose the description in double-quotes.
 
