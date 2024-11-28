@@ -183,3 +183,29 @@ Items to note about this example:
     the_month = forms.ChoiceField(choices = MONTH_NBR)
     the_day = forms.ChoiceField(choices = DAY_NBR)
 ---
+
+## Forms and Formatting with Stylesheets
+
+Once the form is displayed on the html, it becomes obvious that the default appearance leaves a lot to be desired. The location of each field is determined by the length of the labels for that field. And there is no space between the fields.
+
+![Form with No Formatting](img/DjangoFormNoCSS.png)
+
+
+Unfortunately, this is the default output of a form and because of the MVC priorities, the form and the views.function can't participate in the appearance on the html page. Which means that the your app must use the standard formatting technique of stylesheets.
+
+The best place to put any references to your stylesheet is in your basic.html form that all of your pages will extend. 
+
+The stylesheet(s) get their own folder tree inside your app, just like templates folder. And just like the templates that are kept in proj_name/app_name/templates/app_name, you local stylesheets belong in proj_name/app_name/static/app_name.
+
+Your basic.html should contain inside the head  lines similar to the following:
+
+---
+    {% load static %}    
+    <link rel="stylesheet" href={% static "avgs/avgs_styles.css" %}>
+---
+
+The first line is a command to load any static files. This can appear anywhere in base.html but I like to put it in the head, just before I reference the stylesheet. You could have multiple stylesheets or scripts loaded at this point; it just depends on what additional items you want to include in your project.
+
+In the following screenshot, the background color has been set to aliceblue, the labels have been assigned a std width and right-aligned. They also have a small 5px margin added to the top and bottom of the labels, which also affected the position of the fields.
+
+![Form with Formatting](img/DjangoFormWithCSS.png)
