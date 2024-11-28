@@ -71,11 +71,115 @@ The first line is the 'if' portion where the test is performed. Midway in the co
 The 'for loop' command is typically used with variable length lists on the html page. An example is shown below:
 
 ---
+    <ul>
     {% for athlete in athlete_list %} 
         <li>{{ athlete.name }}</li> 
     {% endfor %} 
     </ul> 
 ---
 
-In this example, the athelete_list is passed into the html page and then looped thru, with each item in the athelete_list displayed as list items inside the unordered list markers.
+In this example, the athlete_list is passed into the html page and then looped thru, with each item in the athlete_list displayed as list items inside the unordered list markers.
 
+Even though the if command and for-loop command are performing some processing, they are doing this only to support the proper display of information and therefore do not violate the basics of MVC separation of responsibilities. If the views.py functions were responsible for the correct display of information, it would violate the MVC principles.
+
+## Models
+
+Django provides robust support for database models, allowing users to build almost any relational database that could be needed for almost every situation. This section will not repeat the detailed and extensive documentation that is available on-line. Instead, it will focus on some of the conceptual basics.
+
+First, Django expects to manage all of the database creation and maintenance within its models.py file. This is contrary to the more mainstream separation of the database tool and the programming tool(s). The advantage of this approach is that all of the database info is in one place; there is no need to become both a database expert AND a programming expert. It's all in Django models.
+
+This approach results in the need for database update tools which Django provides as the `makemigrations` & `migrate` tools. `Makemigrations` identifies the changes that need to be made and produces a SQL file that describes those changes in standard SQL statements in the appropriate idioms of your chosen database tool (MySQL, PostgreSQL, etc). `Migrate` actually applies those changes to your database.
+
+The basic procedure is as follows:
+
+1.  Update the models.py file with your database changes.
+1.  Run `makemigrations` on the app where your models.py file is located. For example, `python manage.py makemigrations <app name>`
+1.  Run `python manage.py migrate` to apply those changes.
+
+Note that `migrate` will pick up all of the migration sql files that exist and try to apply them in the proper order. The migration sql files will declare any dependencies and try to prevent us from applying migrations that will break our database.
+
+In a multi-developer environment, database changes will be propagated between developers through the repository. If you have made changes to your models.py file, you should commit those changes and push them to the repository. 
+
+The other developers will receive those changes the next time they `pull` from the repository. The other developers, on receiving an updated models.py file, will then perform a `makemigrations` and then `migrate` their databases.
+
+Once the system is uploaded on the remote server, it will require the admin to run `makemigrations` and `migrate` on the server. Hopefully that will be a rare event because most of the development work will have been completed by the time it is moved onto the remote server.
+
+## Forms
+
+Django forms are directly associated with HTML forms that are used for data submittal. I foolishly had assumed that they would be more helpful in generating the complete web page but they do not; they are strictly related to the display of the fields that the user must interact with and the submittal of that data.
+
+Forms in Django are similar to models in Django in that each type of field is just listed as belonging to a class. For example, in models.py you might enter
+
+---
+    class Station(models.Model):
+        station_name = models.CharField(max_length=32)
+        location = models.CharField(max_length=48)
+        main_activity = models.CharField(max_length=200)
+---
+
+While in forms.py, you might enter
+
+---
+    class ClientForm(forms.Form):
+        fname = forms.CharField(max_length=30)
+        lname = forms.CharField(max_length=40)
+        street_addr = forms.CharField(max_length=100) 
+---
+
+Conceptually, they are very similar and differ mostly in the classes that they extend (models.Model vs forms.Form). We will probably be working closely with databases in which case the classes will be extending ModelForm. Refer to the extensive documentation on-line for details of setting up forms for databases.
+
+The biggest stumbling block for me was understanding how forms were put into use and what information was provided to the called action page. 
+
+### Putting Forms to Work
+
+Once you have a form that lists the fields that you want displayed, you need to pass that form to the html page that will display. That is done in the views.py file in the appropriate function. A simplified description of the process follows:
+
+1.  The user enters an address that is processed by the project (outer) urls.py 
+1.  The project urls.py passes processing to the correct app's urls.py
+1.  That urls.py finds the path that matches the address and calls the appropriate function in views.py
+1.  Somewhere inside that function, an instance of the desired form is created, such as `form = ExampleForm()`. Be sure to import that form or it won't be recognized, such as `from .forms import ExampleForm`. 
+1.  Perform any processing in the function and then include it as part of the return statement, similar to:
+
+---
+    return render(request, "<app name>/<pageToDisplay.html>", {"form": form})
+---
+Two things to note in this example: the html page to display will be in the templates/app name folder and that the form is passed as a dictionary inside curly-braces.
+
+On the page that will display your form, you must write the necessary html form elements. For example:
+
+---
+    <form method="post" action="{% url 'daily' %}">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" value="submit">
+    </form>
+---
+
+Items to note about this example:
+
+*   The method is post. It is recommended that post is used because it is more secure and cleaner.
+*   The action is a Django command that translates roughly into: look in urls.py and find a matching path for 'daily'. In this case, daily is a function in views.py that performs processing base on user inputs and then calls another html page to display the results of the processing. 
+*   The csrf_token command generates a unique token to help prevent "cross-site request forgeries". This csrf_token should be included with every one of your forms as part of your security best practices. The csrf_token is super-long and, if you use a get (instead of a post), it appears at the beginning of the address line which is super-ugly.
+*   The form that you passed in the function as {'form':form} can then be displayed using double curly-braces as {{ form }}. The fields that you defined in your form will then appear on the html page.
+*   The input type of submit generates a std html button that displayed for the user to press.
+*   When the user presses the submit button, the fields on your form are included as part of the info that is sent to the page in the action defined in the beginning of the form.
+
+**IMPORTANT:** The form can only have one action which means that it is difficult to have a page where a user makes a choice that sends the user to different pages depending on their choice. There are probably ways or added libraries to work around this limitation.
+
+**IMPORTANT:** Django only wants to display one form per page. There are well-documented ways to work around this limitation.
+
+*   The values that are passed to the called function can be retrieved using commands like:
+
+---
+    day = request.POST.get('the_day', 'Day Not Provided')
+    month = request.POST.get('the_month', 'Month Not Provided')
+---
+
+*   Note that if the form method = 'get', the request command would be `day = request.GET.get(...)`
+*   Also note the optional error messages of `. . . Not Provided`. These values are not required but are helpful in solving problems with data not displaying.
+*   Also note that the names for the values that are passed come from the form. For example, the matching form includes:
+
+---
+    the_month = forms.ChoiceField(choices = MONTH_NBR)
+    the_day = forms.ChoiceField(choices = DAY_NBR)
+---
