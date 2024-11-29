@@ -209,3 +209,4 @@ The first line is a command to load any static files. This can appear anywhere i
 In the following screenshot, the background color has been set to aliceblue, the labels have been assigned a std width and right-aligned. They also have a small 5px margin added to the top and bottom of the labels, which also affected the position of the fields. And now everything is neatly aligned.
 
 ![Form with Formatting](img/DjangoFormWithCSS.png)
+
