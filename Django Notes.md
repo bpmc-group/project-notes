@@ -206,6 +206,7 @@ Your basic.html should contain inside the head  lines similar to the following:
 
 The first line is a command to load any static files. This can appear anywhere in base.html but I like to put it in the head, just before I reference the stylesheet. You could have multiple stylesheets or scripts loaded at this point; it just depends on what additional items you want to include in your project.
 
-In the following screenshot, the background color has been set to aliceblue, the labels have been assigned a std width and right-aligned. They also have a small 5px margin added to the top and bottom of the labels, which also affected the position of the fields.
+In the following screenshot, the background color has been set to aliceblue, the labels have been assigned a std width and right-aligned. They also have a small 5px margin added to the top and bottom of the labels, which also affected the position of the fields. And now everything is neatly aligned.
 
 ![Form with Formatting](img/DjangoFormWithCSS.png)
+
