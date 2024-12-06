@@ -1,10 +1,10 @@
-= Python Virtual Environments
+# Python Virtual Environments
 
-== Intro
+## Intro
 
 Python includes the capability to create Virtual Environments (venv). This feature allows you to specify configurations without impacting other environments. The most common reason for doing this is allow you to set up different projects differntly. For example, "old-project" could be setup to run on python v3.8 with django v4.8 and "new-project" setup to run on python v3.13 with django v5.11. Another good use would be to verify that your code is compatible with the python versions your code should support.
 
-== Creating and Using venv
+## Creating and Using venv
 
 The basic procedure to create a virtual environment is as follows:
 
@@ -18,7 +18,7 @@ The basic procedure to create a virtual environment is as follows:
 1.  Use python and django as you normally would.
 1.  When you are done with the virtual environment, you should deactivate it by typing `deactivate` (no path required)
 
-== Using Virtual Environments and VS Code
+## Using Virtual Environments and VS Code
 
 VS Code with Python extensions installed seems very aware of virtual environments and **may** open the desired when you open a terminal window. There are probably configuration options or config scripts buried inside VS Code that can affect which venv is installed.
 

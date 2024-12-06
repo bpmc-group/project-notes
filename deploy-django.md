@@ -1,4 +1,4 @@
-# Deploying Django onto Digital Ocean App from Win 11
+# Deploying Django onto Digital Ocean App from Win 11 - UNFINISHED
 
 This whole Django web server deployment is a convoluted process and you have to 'hold your tongue in just the right spot' to have it work. And once it's up there, it seems to be fairly robust and automatically rebuilds whenever the GitHub repo is modified.
 
