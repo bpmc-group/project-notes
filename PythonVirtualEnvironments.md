@@ -4,7 +4,33 @@
 
 Python includes the capability to create Virtual Environments (venv). This feature allows you to specify configurations without impacting other environments. The most common reason for doing this is allow you to set up different projects differntly. For example, "old-project" could be setup to run on python v3.8 with django v4.8 and "new-project" setup to run on python v3.13 with django v5.11. Another good use would be to verify that your code is compatible with the python versions your code should support.
 
-## Creating and Using venv
+## Creating Virtual Env's Using Anaconda
+
+Anaconda is a front end for 'conda', a config system management system. Anaconda Navigator displays a variety of tools that you can use, including Jupyter Notebook and Jupyter Labs(a multi-tabbed version of Jupyter Notebook). It also includes PyCharm and it's own AI interface plus lots more. For the CV project, more importantly, it provides simpler access to virtual envs. You name an environment and then switch to its terminal view, and then use pip to install the desired python software libraries. The biggest advantage over python's venv is that each env that you create in Anaconda automatically lists all of the libraries and their versions. This means that you don't have to worry that you forgot to install Ultralytics or numpy - you can just look at the list to verify it is installed. It also displays the version of each library, so you can tell if one is out of date.
+
+### Creating Anaconda's Virtual Env and Installing Libraries
+
+Anaconda seems to automatically tell VS Code that Code's terminal window should come up in the (base) env. The (base) env is huge, ready for almost everything except CV. And you cannot clone it and use it as a baseline for your env. Instead, set up a new env for OpenCV, do as follows:
+
+1. Click on the Environments button on the left side of the screen. 
+1. Click on the Create button at the bottom of the screen.
+1. Select the desired version of Python. Either version 3.12 or 3.13 are probably best; if some libraries are lagging behind you may have select an older version for compatibility.
+1. When it is done grinding away creating the new env, click on the Rt-Arrow thingie and select "Terminal Window".
+1. In the terminal window, type `pip install opencv-contrib-python`
+1. Next type `pip install ultralytics`
+1. Next type `pip install matplotlib`
+1. Next type `pip install pandas`
+1. Install any other libraries that are needed by an app that you are creating or using in your env.
+
+### Using Anaconda's Virtual Env
+
+1. If your VS Code terminal opens with a different env declared, type the following: `deactivate`  This will deactivate the unwanted env.
+1. If your VS Code terminal window opens with (base) declared, type the following: `conda deactivate`  This will deactivate the (base) env.
+1. Type `conda activate <desired env name>` This will load the desired env. 
+
+It may seem like just telling the terminal to activate the desired env is good enough, but there has been some evidence that the envs will just stack on top of previous ones, meaning that the combined envs may not always be the same, leading to unpredictable results. For reliable results, it is best to deactivate any previous envs before activating the desired env.
+
+## Creating Virtual Env's Using venv
 
 The basic procedure to create a virtual environment is as follows:
 
